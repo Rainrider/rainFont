@@ -1,4 +1,4 @@
-## Interface: 40100
+## Interface: 40200
 ## Title: |cff0099CCrain|rFont
 ## Notes: Changes some of the default fonts
 ## Author: Rainrider
