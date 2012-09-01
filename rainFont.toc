@@ -1,11 +1,9 @@
-## Interface: 40200
+## Interface: 50001
 ## Title: |cff0099CCrain|rFont
 ## Notes: Changes some of the default fonts
 ## Author: Rainrider
-## Version: 0.4
-## X-Credits: BlizzSctFont by Balkeep, tekticles by Tekkub, Who Framed Watcher Wabbit? by Seerah
+## Version: 1.0
+## X-Credits: Balkeep, Tekkub, Seerah
 ## X-Category: Interface Enchancements
-
-
 
 rainFont.lua
