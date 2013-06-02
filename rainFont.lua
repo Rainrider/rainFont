@@ -2,7 +2,15 @@
 local FONT1 = GameFontNormal:GetFont()
 local FONT2 = GameFontNormal:GetFont()
 local FONTSIZE = 24 -- only for incoming events
+local BARTEXTURE = "Interface\\AddOns\\rainFont\\normtexc.tga"
+local BORDERTEXTURE = "Interface\\AddOns\\rainFont\\border.tga"
 --[[ END OF CONFIG ]]--
+
+local mirrorIcons = {
+	[EXHAUSTION_LABEL] = "Interface\\Icons\\Spell_Holy_PainSupression",
+	[BREATH_LABEL] = "Interface\\Icons\\Spell_Shadow_DemonBreath",
+	[GetSpellInfo(5384)] = "Interface\\Icons\\Ability_Rogue_FeignDeath",
+}
 
 local function SetFont(obj, font, size, style, sr, sg, sb, sox, soy)
 	obj:SetFont(font, size, style)
@@ -79,4 +87,45 @@ local function rainSet()
 
 end
 
+local function StyleMirrorTimerBars()
+	local frame, name, text, statusBar, border, fontHeight, fontFlags, _
+	local icon, height
+	for i = 1, MIRRORTIMER_NUMTIMERS do
+		frame = _G["MirrorTimer"..i]
+		name = frame:GetName()
+		text = _G[name.."Text"]
+		border = _G[name.."Border"]
+		statusBar  = _G[name.."StatusBar"]
+
+		_, fontHeight, fontFlags = text:GetFont()
+		text:SetFont(FONT2, fontHeight, fontFlags)
+		text:ClearAllPoints()
+		text:SetPoint("CENTER", statusBar, 0, 0)
+		border:SetTexture(BORDERTEXTURE)
+		border:ClearAllPoints()
+		border:SetPoint("TOPLEFT", statusBar, -2, 2)
+		border:SetPoint("BOTTOMRIGHT", statusBar, 2, -2)
+		statusBar:SetStatusBarTexture(BARTEXTURE)
+
+		icon = frame:CreateTexture(name.."Icon", "OVERLAY")
+		height = border:GetHeight()
+		icon:SetSize(height, height)
+		icon:SetPoint("LEFT", statusBar, "RIGHT", 5, 0)
+		frame.icon = icon
+
+		frame:HookScript("OnShow", function(self)
+			local icon = self.icon
+			icon:SetTexture(mirrorIcons[(_G[self:GetName().."Text"]):GetText()])
+			icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+			icon:Show()
+		end)
+
+		frame:HookScript("OnHide", function(self)
+			self.icon:Hide()
+		end)
+
+	end
+end
+
 rainSet()
+StyleMirrorTimerBars()
