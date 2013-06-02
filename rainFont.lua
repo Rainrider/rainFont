@@ -22,11 +22,10 @@ local function SetFont(obj, font, size, style, sr, sg, sb, sox, soy)
 	end
 end
 
-local function rainSet()
+local function ChangeFonts()
 	DAMAGE_TEXT_FONT = FONT1
 	COMBAT_TEXT_HEIGHT = FONTSIZE
 	UNIT_NAME_FONT = FONT1
-	-- NAMEPLATE_FONT = FONT1
 
 	-- combat text
 	local _, _, fFlags = CombatTextFont:GetFont()
@@ -60,13 +59,13 @@ local function rainSet()
 
 	-- watch frame
 	hooksecurefunc("WatchFrame_Update", function()
-		SetFont(WatchFrameTitle, FONT2, 14, nil)
+		SetFont(WatchFrameTitle, FONT2, 14)
 		nextline = 1
 		for i = nextline, 50 do
 			line = _G["WatchFrameLine"..i]
 			if line then
-				SetFont(line.text, FONT2, 12, nil)
-				SetFont(line.dash, FONT2, 12, nil)
+				SetFont(line.text, FONT2, 12)
+				SetFont(line.dash, FONT2, 12)
 			else
 				nextline = i	-- so we only have to change new lines during the hook
 				break
@@ -78,12 +77,12 @@ local function rainSet()
 	hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 		for i=1, NUM_ALWAYS_UP_UI_FRAMES do
 			text = _G["AlwaysUpFrame"..i.."Text"]
-			SetFont(text, FONT2, 10, nil)
+			SetFont(text, FONT2, 10)
 		end
 	end)
 
 	-- auto follow status
-	SetFont(AutoFollowStatusText, FONT1, 14, nil)
+	SetFont(AutoFollowStatusText, FONT1, 14)
 
 end
 
@@ -127,5 +126,5 @@ local function StyleMirrorTimerBars()
 	end
 end
 
-rainSet()
+ChangeFonts()
 StyleMirrorTimerBars()
