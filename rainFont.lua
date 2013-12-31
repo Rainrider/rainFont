@@ -1,6 +1,6 @@
 --[[ CONFIG ]]--
-local FONT1 = GameFontNormal:GetFont()
-local FONT2 = GameFontNormal:GetFont()
+local FONT1 = rainDB and rainDB.font1 or GameFontNormal:GetFont()
+local FONT2 = rainDB and rainDB.font2 or GameFontNormal:GetFont()
 local FONTSIZE = 24 -- only for incoming events
 local BARTEXTURE = "Interface\\AddOns\\rainFont\\normtexc.tga"
 local BORDERTEXTURE = "Interface\\AddOns\\rainFont\\border.tga"

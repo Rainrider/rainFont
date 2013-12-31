@@ -6,4 +6,6 @@
 ## X-Credits: Balkeep, Tekkub, Seerah
 ## X-Category: Interface Enchancements
 
+## OptionalDeps: rainLib
+
 rainFont.lua
