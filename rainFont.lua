@@ -57,22 +57,6 @@ local function ChangeFonts()
 	SetFont(RaidBossEmoteFrameSlot1, FONT1, size, "OUTLINE", 0, 0, 0, 2, -2)
 	SetFont(RaidBossEmoteFrameSlot2, FONT1, size, "OUTLINE", 0, 0, 0, 2, -2)
 
-	-- watch frame
-	hooksecurefunc("WatchFrame_Update", function()
-		SetFont(WatchFrameTitle, FONT2, 14)
-		nextline = 1
-		for i = nextline, 50 do
-			line = _G["WatchFrameLine"..i]
-			if line then
-				SetFont(line.text, FONT2, 12)
-				SetFont(line.dash, FONT2, 12)
-			else
-				nextline = i	-- so we only have to change new lines during the hook
-				break
-			end
-		end
-	end)
-
 	-- world state frame
 	hooksecurefunc("WorldStateAlwaysUpFrame_Update", function()
 		for i=1, NUM_ALWAYS_UP_UI_FRAMES do
